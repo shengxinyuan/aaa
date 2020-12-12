@@ -54,6 +54,36 @@ const environments = [
     name: 'Footprint Court (HDR Labs)',
     path: '/environment/footprint_court_2k.hdr',
     format: '.hdr'
+  },
+  {
+    id: 'studio_small_03_1k',
+    name: 'studio_small_03_1k',
+    path: '/environment/studio_small_03_1k.hdr',
+    format: '.hdr'
+  },
+  {
+    id: 'studio_small_04_1k',
+    name: 'studio_small_04_1k',
+    path: '/environment/studio_small_04_1k.hdr',
+    format: '.hdr'
+  },
+  {
+    id: 'studio_small_05_1k',
+    name: 'studio_small_05_1k',
+    path: '/environment/studio_small_05_1k.hdr',
+    format: '.hdr'
+  },
+  {
+    id: 'environment',
+    name: 'environment',
+    path: '/environment/environment.hdr',
+    format: '.hdr'
+  },
+  {
+    id: 'px',
+    name: 'px',
+    path: '/environment/px.hdr',
+    format: '.hdr'
   }
 ]
 
@@ -91,9 +121,11 @@ class Viewer {
     this.gui = null;
 
     this.state = {
-      environment: options.preset === Preset.ASSET_GENERATOR
-        ? environments.find((e) => e.id === 'footprint-court').name
-        : environments[2].name,
+      // environment: options.preset === Preset.ASSET_GENERATOR
+      //   ? environments.find((e) => e.id === 'footprint-court').name
+      //   : environments[2].name,
+      // 这个效果好
+      environment: 'environment',
       background: false,
       playbackSpeed: 1.0,
       actionStates: {},
@@ -133,7 +165,9 @@ class Viewer {
 
     this.renderer = window.renderer = new WebGLRenderer({antialias: true});
     this.renderer.physicallyCorrectLights = true;
-    this.renderer.outputEncoding = LinearEncoding;
+    // this.renderer.outputEncoding = LinearEncoding;
+    // 这个效果好
+    this.renderer.outputEncoding = sRGBEncoding;
     this.renderer.setClearColor( '#e2e7ea' );
     this.renderer.setPixelRatio( window.devicePixelRatio );
     this.renderer.setSize( el.clientWidth, el.clientHeight );
@@ -218,7 +252,7 @@ class Viewer {
       .setKTX2Loader( new KTX2Loader().detectSupport( this.renderer ) );
 
     const blobURLs = [];
-    loader.load('scene.gltf', (gltf) => {
+    loader.load('scene2.gltf', (gltf) => {
       const scene = gltf.scene || gltf.scenes[0];
       const clips = gltf.animations || [];
       if (!scene) {
