@@ -1,0 +1,11 @@
+Model Information:
+* title:	pink diamond
+* source:	https://sketchfab.com/3d-models/pink-diamond-fcdd2b8c52f0473f93b8f0c1acc6a2f1
+* author:	gabrisciarrone (https://sketchfab.com/gabrisciarrone)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "pink diamond" (https://sketchfab.com/3d-models/pink-diamond-fcdd2b8c52f0473f93b8f0c1acc6a2f1) by gabrisciarrone (https://sketchfab.com/gabrisciarrone) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

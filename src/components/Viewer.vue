@@ -252,7 +252,7 @@ class Viewer {
       .setKTX2Loader( new KTX2Loader().detectSupport( this.renderer ) );
 
     const blobURLs = [];
-    loader.load('/model1/scene.gltf', (gltf) => {
+    loader.load('diamonds/blue_diamond/scene.gltf', (gltf) => {
       const scene = gltf.scene || gltf.scenes[0];
       const clips = gltf.animations || [];
       if (!scene) {
