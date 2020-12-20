@@ -13,6 +13,7 @@ import {
   Cache,
   CubeTextureLoader,
   DirectionalLight,
+  PointLight,
   GridHelper,
   HemisphereLight,
   LinearEncoding,
@@ -56,35 +57,11 @@ const environments = [
     format: '.hdr'
   },
   {
-    id: 'studio_small_03_1k',
-    name: 'studio_small_03_1k',
-    path: '/environment/studio_small_03_1k.hdr',
-    format: '.hdr'
-  },
-  {
-    id: 'studio_small_04_1k',
-    name: 'studio_small_04_1k',
-    path: '/environment/studio_small_04_1k.hdr',
-    format: '.hdr'
-  },
-  {
-    id: 'studio_small_05_1k',
-    name: 'studio_small_05_1k',
-    path: '/environment/studio_small_05_1k.hdr',
-    format: '.hdr'
-  },
-  {
     id: 'environment',
     name: 'environment',
     path: '/environment/environment.hdr',
     format: '.hdr'
   },
-  {
-    id: 'px',
-    name: 'px',
-    path: '/environment/px.hdr',
-    format: '.hdr'
-  }
 ]
 
 const DEFAULT_CAMERA = '[default]';
@@ -139,7 +116,8 @@ class Viewer {
       exposure: 0,
       textureEncoding: 'sRGB',
       ambientIntensity: 0.63,
-      ambientColor: 0xFFFFFF,
+      // ambientColor: 0xFFFFFF,
+      ambientColor: '#12562a',
       directIntensity: 1.1, // TODO(#116)
       directColor: 0xe2edf9,
       // bgColor1: '#e2e7ea',
@@ -165,9 +143,9 @@ class Viewer {
 
     this.renderer = window.renderer = new WebGLRenderer({antialias: true});
     this.renderer.physicallyCorrectLights = true;
-    // this.renderer.outputEncoding = LinearEncoding;
-    // 这个效果好
-    this.renderer.outputEncoding = sRGBEncoding;
+    // // 这个效果好
+    // this.renderer.outputEncoding = sRGBEncoding;
+    this.renderer.outputEncoding = LinearEncoding;
     this.renderer.setClearColor( '#e2e7ea' );
     this.renderer.setPixelRatio( window.devicePixelRatio );
     this.renderer.setSize( el.clientWidth, el.clientHeight );
@@ -280,7 +258,8 @@ class Viewer {
     object.position.x += (object.position.x - center.x);
     object.position.y += (object.position.y - center.y);
     object.position.z += (object.position.z - center.z);
-    this.controls.maxDistance = size * 10;
+    this.controls.minDistance = size * 0.8;
+    this.controls.maxDistance = size * 1.2;
     this.defaultCamera.near = size / 100;
     this.defaultCamera.far = size * 100;
     this.defaultCamera.updateProjectionMatrix();
@@ -438,7 +417,23 @@ class Viewer {
     light2.name = 'main_light';
     this.defaultCamera.add( light2 );
 
-    this.lights.push(light1, light2);
+    const light5  = new DirectionalLight(0xe2f700, 1000);
+    light5.position.set(5, 10, 0.866);
+    this.defaultCamera.add( light5 );
+    
+    const light6  = new DirectionalLight(0xe80051, 1000);
+    light6.position.set(-3, 8, 0.866);
+    this.defaultCamera.add( light6 );
+
+    const light7  = new DirectionalLight(0xe800, 1000);
+    light7.position.set(7, 10, 0.9);
+    this.defaultCamera.add( light7 );
+
+    const light8  = new DirectionalLight(0x677f7, 1000);
+    light8.position.set(-5, 8, 0.9);
+    this.defaultCamera.add( light8 );
+
+    this.lights.push(light1, light2, light5, light6, light7, light8);
   }
 
   removeLights () {
